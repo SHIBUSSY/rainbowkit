@@ -2,8 +2,12 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import TokenBalance from '../components/TokenBalance';
 
 const Home: NextPage = () => {
+  const baseTokenAddress: `0x${string}` = '0x7475fa4c36344f1d633964f02564f37162299194';
+  const tokenDecimals = 18; // Replace with the token's decimals
+
   return (
     <div className={styles.container}>
       <Head>
@@ -17,6 +21,8 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <ConnectButton />
+
+        <TokenBalance tokenAddress={baseTokenAddress} tokenDecimals={tokenDecimals} />
 
         <h1 className={styles.title}>
           Welcome to <a href="">RainbowKit</a> + <a href="">wagmi</a> +{' '}
