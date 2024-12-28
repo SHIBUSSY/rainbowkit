@@ -30,17 +30,29 @@ const TokenBalance: React.FC<TokenBalanceProps> = ({ tokenAddress, tokenDecimals
   if (isLoading) return <div>Loading balance...</div>;
   if (isError) return <div>Error fetching balance.</div>;
 
-  const formattedBalance = formatUnits(balance || 0, tokenDecimals);
+  // Format balance
+  const formattedBalance = parseFloat(formatUnits(balance || 0, tokenDecimals));
+
+  // Define the message
+  const message =
+    formattedBalance > 0
+      ? "Not sure what this is gonna be yet. Stay tired. $SHIBUSSY"
+      : "You don't have any $SHIBUSSY, but you are still cool.";
 
   return (
     <div>
-      <h3>Token Balance</h3>
+      <h3>$SHIBUSSY Balance</h3>
       <p>
-        Address: <strong>{tokenAddress}</strong>
+        My Balance: <strong>{formattedBalance}</strong>
       </p>
-      <p>
-        Balance: <strong>{formattedBalance}</strong>
-      </p>
+      <div>
+        <strong>{message}</strong>
+      </div>
+      {formattedBalance > 0 && (
+        <div>
+          <img src="/assets/project-logo.png" alt="SHIBUSSY logo" />
+        </div>
+      )}
     </div>
   );
 };
